@@ -25,4 +25,6 @@ Route::get('/checkrequest', function () {
     return view('checkrequest');
 });
 
-
+Route::get('/createRepair', function () {
+    return view('CRUD.create');
+})->name('create');
