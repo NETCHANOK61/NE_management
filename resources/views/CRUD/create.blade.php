@@ -60,7 +60,7 @@
                 <div class="collapse navbar-collapse" id="navbarmain">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{route('index')}}">หน้าแรก</a>
+                            <a class="nav-link" href="">หน้าแรก</a>
                         </li>
                         {{-- <li class="nav-item"><a class="nav-link" href="about.html">About</a></li> --}}
                         <li class="nav-item"><a class="nav-link" href="{{route('create')}}">แจ้งงานซ่อม</a></li>
