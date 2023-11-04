@@ -13,9 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/index', function () {
-    return view('index');
-})->name('index');
-Route::get('/create', function () {
-    return view('CRUD.create');
-})->name('create');
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/request', function () {
+    return view('request');
+});
+
+Route::get('/checkrequest', function () {
+    return view('checkrequest');
+});
+
+
