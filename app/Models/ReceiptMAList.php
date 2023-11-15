@@ -5,19 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CustomerSatisfaction extends Model
+class ReceiptMAList extends Model
 {
     use HasFactory;
-
+    protected $table = 'receiptMAList';
     protected $fillable = [
-        'ticket_id',
+        'receiptMA_id',
         'title',
-        'score',
+        'cost'
     ];
 
-    // Relationship to Ticket
-    public function ticket()
+    public function receiptMA()
     {
-        return $this->belongsTo(Ticket::class);
+        return $this->belongsTo(ReceiptMA::class);
     }
 }

@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Enums\IssueType;
-use App\Enums\Quipment;
 use App\Enums\RepairType;
 use App\Enums\TicketStatus;
 use App\Enums\TicketUrgency;
 use App\Models\Equipment;
+use App\Models\MaintenanceCost;
+use App\Models\ReceiptMA;
 use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -109,13 +110,14 @@ class TicketController extends Controller
         //
         $userAll = User::all();
         $statusCases = TicketStatus::cases();
+        $receipts = ReceiptMA::with('receiptMALists')->where('ticket_id', $ticket->id)->get();
         $status = array_map(function ($case, $index) {
             return (object) [
                 'index' => (string) $index,
                 'value' => $case->value
             ];
         }, $statusCases, array_keys($statusCases));
-        return view('ticket.edit', compact('ticket', 'userAll', 'status'));
+        return view('ticket.edit', compact('ticket', 'userAll', 'status', 'receipts'));
     }
 
     /**

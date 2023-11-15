@@ -95,15 +95,6 @@
                         autofocus />
                     <x-input-error :messages="$errors->get('solvedDetail')" class="mt-2" />
                 </div>
-
-                <div class="mt-4">
-                    <x-input-label for="serviceCost" :value="__('ค่าใช้จ่าย')" />
-                    <x-text-input id="serviceCost" class="block mt-1 w-full" type="text" name="serviceCost"
-                        autofocus />
-                    <x-input-error :messages="$errors->get('serviceCost')" class="mt-2" />
-                    <a><x-info-button>บันทึกค่าใช้จ่าย</x-danger-button></a>
-                </div>
-
                 <div class="mt-4">
                     <x-input-label for="status" :value="__('สถานะ')" />
                     <select class="form-select" aria-label="Default select example" id="status" name="status">
@@ -121,6 +112,57 @@
                     </x-primary-button>
                 </div>
             </form>
+            <br>
+            <hr>
+            <h4>สรุปค่าใช้จ่าย</h4>
+            <a
+                href="{{ route('receiptMAList.show', $ticket->id) }}"><x-info-button>เพิ่มบันทึกค่าใช้จ่าย</x-danger-button></a>
+            <table class="table-fixed">
+                <thead>
+                    <tr>
+                        <th>ครั้งที่</th>
+                        <th>ค่าใช้จ่าย</th>
+                        <th>ค่าใช้จ่ายรวม</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($receipts as $receipt)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>
+                                @foreach ($receipt->receiptMALists as $receiptList)
+                                    {{ $receiptList->title }} : {{ $receiptList->cost }} <br>
+                                @endforeach
+                            </td>
+                            <td>{{ $receipt->total_cost }}</td>
+                            <td> <a
+                                    href="{{ route('receiptMAList.edit', $receipt->id) }}"><x-info-button>แก้ไข</x-danger-button></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    {{-- <tr>
+                        <td>ค่าซ่อม</td>
+                        <td>{{ $repairCostAll }}</td>
+                    </tr>
+                    <tr>
+                        <td>ค่าอะไหล่</td>
+                        <td>{{ $elementCostAll }}</td>
+                    </tr>
+                    <tr>
+                        <td>ค่าเดินทาง</td>
+                        <td>{{ $travelCostAll }}</td>
+                    </tr>
+                    <tr>
+                        <td>ค่าอุปกรณ์</td>
+                        <td>{{ $deviceCostAll }}</td>
+                    </tr>
+                    <tr>
+                        <td>รวมทั้งหมด</td>
+                        <td>{{ $sumCost }}</td>
+                    </tr> --}}
+                </tbody>
+            </table>
         </div>
     </div>
 </x-app-layout>

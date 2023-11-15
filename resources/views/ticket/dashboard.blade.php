@@ -10,6 +10,7 @@
                         <th scope="col">ประเภทปัญหา</th>
                         <th scope="col">สถานะ</th>
                         <th scope="col"></th>
+                        {{-- <th scope="col"></th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -24,6 +25,11 @@
                                 <a
                                     href=
                                 "{{ route('ticket.edit', $item->id) }}"><x-info-button>อัพเดทข้อมูล</x-danger-button></a>
+                            </td>
+                            <td>
+                                <a
+                                    href=
+                                "{{ route('customer_satis.show', $item->id) }}"><x-info-button>ประเมิน</x-danger-button></a>
                             </td>
                         </tr>
                     @endforeach
