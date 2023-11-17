@@ -13,9 +13,9 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('หน้าหลัก') }}
+                        {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('ticket.index')" :active="request()->routeIs('ticket.index')">
+                    <x-nav-link :href="route('ticketss')" :active="request()->routeIs('ticketss')">
                         {{ __('ticket') }}
                     </x-nav-link>
                     <x-nav-link :href="route('ticket.create')" :active="request()->routeIs('ticket.create')">
