@@ -3,6 +3,7 @@
 use App\Http\Controllers\MAController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\CustomerSatisController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -37,14 +38,25 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('auth')->group( function() {
+Route::middleware('auth')->group(function () {
     Route::resource('ticket', TicketController::class);
 });
 
-Route::middleware('auth')->group( function() {
+Route::middleware('auth')->group(function () {
     Route::resource('maintenance_cost', MAController::class);
     // Route::get('/ticket/create', [TicketController::class, 'create'])->name('ticket.create');
     // Route::post('/ticket/create', [TicketController::class, 'store'])->name('ticket.store');
 });
 
-require __DIR__.'/auth.php';
+
+// Route::middleware('auth')->group(function () {
+//     Route::resource('customer_satis', CustomerSatisController::class);
+//     // Route::get('/customer_satis/{id}/create', [CustomerSatisController::class,'create'])->name('customer_satis2.create');
+// });
+
+Route::middleware('auth')->group(function () {
+    Route::resource('customer_satis', CustomerSatisController::class);
+    Route::post('/customer_satis/{id}/create', [CustomerSatisController::class, 'store'])->name('customer_satis.store');
+});
+
+require __DIR__ . '/auth.php';

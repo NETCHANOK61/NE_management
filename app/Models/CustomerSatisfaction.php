@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerSatisfaction extends Model
 {
     use HasFactory;
-
+    protected $table = 'customer_satisfaction';
     protected $fillable = [
         'ticket_id',
         'title',
@@ -16,8 +16,8 @@ class CustomerSatisfaction extends Model
     ];
 
     // Relationship to Ticket
-    public function ticket()
+    public function customer_satisfaction_detail()
     {
-        return $this->belongsTo(Ticket::class);
+        return $this->belongsTo(CustomerSatisfactionDetail::class);
     }
 }
