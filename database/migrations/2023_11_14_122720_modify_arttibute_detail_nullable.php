@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::table('receiptMAList', function (Blueprint $table) {
             //
+            $table->dropColumn('detail');
+        });
+
+        Schema::table('receiptMAList', function (Blueprint $table) {
+            //
             $table->string('detail')->nullable()->after('created_at');
         });
     }

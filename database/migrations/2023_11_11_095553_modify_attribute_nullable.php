@@ -8,9 +8,9 @@ return new class extends Migration
 {
     public function up()
     {
-        // // Drop the foreign key constraint
+        // Drop the foreign key constraint
         // Schema::table('tickets', function (Blueprint $table) {
-        //     $table->dropForeign('technician');
+        //     $table->dropForeign('tickets_technician_foreign');
         // });
 
         // Drop the existing 'technician' column
@@ -23,23 +23,18 @@ return new class extends Migration
             $table->string('technician')->nullable();
         });
 
-        // // Recreate the foreign key constraint
+        // Recreate the foreign key constraint
         // Schema::table('tickets', function (Blueprint $table) {
         //     $table->foreign('technician')->references('id')->on('users');
-        //     // Replace 'id' and 'technicians' with your actual referenced column and table.
+        //     // Replace 'id' and 'users' with your actual referenced column and table.
         // });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         // Drop the foreign key constraint
         // Schema::table('tickets', function (Blueprint $table) {
-        //     $table->dropForeign('technician');
+        //     $table->dropForeign('tickets_technician_foreign');
         // });
 
         // Drop the 'technician' column
@@ -55,7 +50,8 @@ return new class extends Migration
         // Recreate the foreign key constraint
         Schema::table('tickets', function (Blueprint $table) {
             $table->foreign('technician')->references('id')->on('users');
-            // Replace 'id' and 'technicians' with your actual referenced column and table.
+            // Replace 'id' and 'users' with your actual referenced column and table.
         });
     }
 };
+
