@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\CustomerSatisController;
+use App\Http\Controllers\MAController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ReceiptMAController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,7 +28,12 @@ Route::get('/', function () {
     ]);
 });
 
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::get('/dashboard', function () {
+    Route::get('/dashboard/logout', [AuthenticatedSessionController::class, 'edit'])->name('profile.edit');
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -42,20 +47,10 @@ Route::middleware('auth')->group( function() {
     Route::resource('ticket', TicketController::class);
 });
 
-// Route::middleware('auth')->group( function() {
-//     Route::resource('maintenance_cost', MAController::class);
-//     // Route::get('/ticket/create', [TicketController::class, 'create'])->name('ticket.create');
-//     // Route::post('/ticket/create', [TicketController::class, 'store'])->name('ticket.store');
-// });
-
 Route::middleware('auth')->group( function() {
-    Route::resource('receiptMAList', ReceiptMAController::class);
-    Route::post('/receipts/{ticket_id}/store', [ReceiptMAController::class, 'store'])->name('receiptMAList.store');
-    Route::patch('/receipts/{receiptMA_id}/update', [ReceiptMAController::class, 'update'])->name('receiptMAList.update');
-});
-
-Route::middleware('auth')->group( function() {
-    Route::resource('customer_satis', CustomerSatisController::class);
+    Route::resource('maintenance_cost', MAController::class);
+    // Route::get('/ticket/create', [TicketController::class, 'create'])->name('ticket.create');
+    // Route::post('/ticket/create', [TicketController::class, 'store'])->name('ticket.store');
 });
 
 require __DIR__.'/auth.php';
